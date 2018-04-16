@@ -8,8 +8,11 @@ var getImage = (keyword) => {
 		}, (error, response, body)=>{
 			try {
                 if (!error && response.statusCode === 200) {
-                    console.log(body)
-                    resolve(body)
+                    images = []
+                    for (i=0; i < body.hits.length; i++) {
+                        images.push(body.hits[i].previewURL)
+                    }
+                    resolve(images)
                 } else {
                     reject('Image Not Found')
                 }

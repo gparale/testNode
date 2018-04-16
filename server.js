@@ -45,10 +45,11 @@ app.post("/resources", (request, response) => {
         	body_content.push(result);
         	response.json({status:"OK", msg:body_content})
         }).catch((error)=>{response.json({status:"Error", msg:error})})
-    }else if(request.body['request-type'] == 'images') {
+    }else if(request.body['request-type'] == 'image') {
     	image = imagecode.getImage(request.body.msg).then((result)=>{
+    		console.log(result);
     		body_content.push(result)
-    		response.json({status:'OK'})
+    		response.json({status:'OK', msg: result})
     	}).catch((error)=>{response.json({status:"Error", msg:error})})
     	
     }

@@ -13,7 +13,14 @@ document.addEventListener("keyup", (event)=>{
 		}).then((response)=>{
 				return response.json()
 		}).then((json)=>{
-			console.log(json)
+			if (json.status === "OK"){
+				for (i=0; i < json.msg.length;i++){
+					ndiv = document.createElement('img')
+					ndiv.src = json.msg[i]
+					ndiv.display = 'inline-block'
+					document.body.appendChild(ndiv)
+				}
+			}
 		})
 	}
 })
