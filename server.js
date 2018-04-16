@@ -15,6 +15,8 @@ app.set('view engine', 'hbs')
 
 hbs.registerPartials(__dirname + "/views/partials")
 
+app.use(bodyparser.json())
+
 app.get('/', (request, response)=>{
 	response.render('front-page.hbs')
 })
@@ -44,7 +46,11 @@ app.post("/resources", (request, response) => {
         	response.json({status:"OK", msg:body_content})
         }).catch((error)=>{response.json({status:"Error", msg:error})})
     }else if(request.body['request-type'] == 'images') {
-    	response.json('Hello')
+    	image = imagecode.getImage(request.body.msg).then((result)=>{
+    		body_content.push(result)
+    		response.json({status:'OK'})
+    	}).catch((error)=>{response.json({status:"Error", msg:error})})
+    	
     }
 })
 
