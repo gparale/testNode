@@ -6,6 +6,7 @@ document.addEventListener("keyup", (event)=>{
 				'Content-Type': 'application/json'
 			},
 			body:JSON.stringify({
+				
 				"request-type": 'location',
 				msg: document.getElementById('mapweather').value
 			})

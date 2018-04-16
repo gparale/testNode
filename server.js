@@ -20,14 +20,14 @@ app.get('/', (request, response)=>{
 })
 
 app.get("/mapsnweather", (request, response) => {
-    response.render("/mapsnweather.hbs", {
+    response.render('mapsnweather.hbs', {
     	menu: '/image',
     	menu_name: "Go for image"
     })
 })
 
 app.get("/image", (request, response) => {
-    response.render("/mapsnweather.hbs", {
+    response.render('image.hbs', {
     	menu: '/mapsnweather',
     	menu_name: "Go for weather"
     })
@@ -43,8 +43,9 @@ app.post("/resources", (request, response) => {
         	body_content.push(result);
         	response.json({status:"OK", msg:body_content})
         }).catch((error)=>{response.json({status:"Error", msg:error})})
+    }else if(request.body['request-type'] == 'images') {
+    	response.json('Hello')
     }
-    
 })
 
 app.listen(port, () => {
